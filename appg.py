@@ -22,13 +22,13 @@ class MainInterface:
 
         d_tab = Telephone(self.notebook)
         a_tab = Appg(self.notebook)
-        b_tab = PercentPositive(self.notebook)
-        c_tab = Percent(self.notebook)
+        #b_tab = PercentPositive(self.notebook)
+        #c_tab = Percent(self.notebook)
 
         self.notebook.add(d_tab, text="  Телефонный справочник  ")
         self.notebook.add(a_tab, text="  АППГ  ")
-        self.notebook.add(b_tab, text="  Раскываемость  ")
-        self.notebook.add(c_tab, text="  АППГ от процента  ")
+        #self.notebook.add(b_tab, text="  Раскываемость  ")
+        #self.notebook.add(c_tab, text="  АППГ от процента  ")
 
 
         self.notebook.grid(row=1, column=1)
