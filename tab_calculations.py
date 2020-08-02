@@ -111,7 +111,6 @@ class Appg(tkinter.Frame):
             self.frame_right, text='Рассчитать', command=self.calculation_percent_appg)
         button_calculation.place(relx=0.05, rely=0.4)
 
-
     def calculation_appg(self):
         current_year = int(self.appg_entry_current_year.get())
         last_year = int(self.appg_entry_last_year.get())
