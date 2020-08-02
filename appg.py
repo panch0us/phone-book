@@ -10,6 +10,7 @@ class MainInterface:
         self.window = tkinter.Tk()
         self.window.title('УУР УМВД')
         self.window.geometry("1200x690")
+        self.window.resizable(width=False, height=False)
         self.create_widgets()
 
     def create_widgets(self):
@@ -20,8 +21,6 @@ class MainInterface:
 
         d_tab = Telephone(self.notebook)
         a_tab = Appg(self.notebook)
-        #b_tab = PercentPositive(self.notebook)
-        #c_tab = Percent(self.notebook)
 
         self.notebook.add(d_tab, text="  Телефонный справочник  ")
         self.notebook.add(a_tab, text="  Вычисления  ")
