@@ -1,19 +1,11 @@
 # ТЕЛЕФОННЫЙ СПРАВОЧНИК
-
 """
-1.  __init__ вызывается конструктор, который запускает функции exist_database и init_ui
-2.  exist_database - создается база данных, если её нет
-3.  init_ui - создает окружение из элемента tkinter.Text и принимает функцию для заполнения поля, созданного элементом
-    text.
-    3.1. Варианты принимаемых фукнцию для init_ui:
-        3.1.1. select_all_from_database() - по умолчанию вызывается первой, выполняет подключение к БД и получает
-            результат в виде кортежа со всеми записями из таблицы phone_book
-        3.1.1. select_name_from_database() - для вывода на экран при применении фильтра по ФИО
-        test
+Описание
 """
 
 import tkinter
 from tkinter import ttk
+from tkinter.font import Font
 import sqlite3
 import os.path
 
@@ -23,6 +15,8 @@ class Telephone(tkinter.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
+        # Задаем стандартный шрифт и размер шрифта для приложения
+        self.myFont = Font(family="Courier", size=10)
 
         self.frame_left = tkinter.LabelFrame()
         self.frame_left.place(in_=self, x=5, y=5, height=600, width=650)
@@ -184,7 +178,7 @@ class Telephone(tkinter.Frame):
                                              f'РАБОТА:\t|{str(i[4]).title()}\n'
                                              f'ДОЛЖН:\t|{str(i[5]).title()}\n'
                                              f'РАЗНОЕ:\t|{str(i[6]).title()}\n' + ('-' * 76) + '\n')
-        self.text.configure(state='disabled')
+        self.text.configure(state='disabled', font=self.myFont)
 
         # создаем "скроллер" (ползунок прокрутки), который устанавливается comand=text.yview, где y - ось.
         self.scroll = tkinter.Scrollbar(self.frame_left, command=self.text.yview)
@@ -304,9 +298,9 @@ class Telephone(tkinter.Frame):
         self.label_menu_contact.place(x=170, y=200)
 
         # ЛЕЙБЛ АВТОРА
-        self.label_author = tkinter.Label(self.frame_bot, text='Copyright © Савкин П.В. 2020')
+        self.label_author = tkinter.Label(self.frame_bot, text='© Савкин П.В. 2020')
         # entry - (анг. вход) - поле для ввода данных пользователем
-        self.label_author.place(x=980, y=3)
+        self.label_author.place(x=1050, y=3)
 
     def create_new_window_delete_member(self):
         """Открывается новое окно для удаления контакта"""

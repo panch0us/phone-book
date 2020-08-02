@@ -24,7 +24,7 @@ class MainInterface:
         #c_tab = Percent(self.notebook)
 
         self.notebook.add(d_tab, text="  Телефонный справочник  ")
-        self.notebook.add(a_tab, text="  Рассчеты  ")
+        self.notebook.add(a_tab, text="  Вычисления  ")
 
         self.notebook.grid(row=1, column=1)
 

@@ -26,6 +26,11 @@ class Appg(tkinter.Frame):
         self.percent()
         self.percent_appg()
 
+        # ЛЕЙБЛ АВТОРА
+        label_author = tkinter.Label(self.frame_bot, text='© Савкин П.В. 2020')
+        # entry - (анг. вход) - поле для ввода данных пользователем
+        label_author.place(x=1050, y=3)
+
     def appg(self):
         """Создаем элементы для расчета АППГ"""
         ##### ЭЛЕМЕНТЫ ТЕКУЩЕГО ГОДА #####
@@ -99,7 +104,7 @@ class Appg(tkinter.Frame):
         # из переменной calculation.
         self.calculation_count_percent_and_appg = tkinter.StringVar()
         label_calculation_result = tkinter.Label(self.frame_right, textvariable=self.calculation_count_percent_and_appg)
-        label_calculation_result.place(relx=0.7, rely=0.3)
+        label_calculation_result.place(relx=0.85, rely=0.3)
 
         ##### КНОПКИ #####
         button_calculation = tkinter.Button(
