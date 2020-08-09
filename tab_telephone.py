@@ -305,7 +305,9 @@ class Telephone(tkinter.Frame):
     def create_new_window_delete_member(self):
         """Открывается новое окно для удаления контакта"""
         self.new_window_delete_member = tkinter.Toplevel()
-        self.new_window_delete_member.geometry("270x120")
+        self.new_window_delete_member.geometry("280x120")
+        self.new_window_delete_member.title('Удаление контакта')
+        self.new_window_delete_member.resizable(width=False, height=False)
         # в переменную self.id получаем данные их поля entry_add_area, опции textvariable
         self.id = tkinter.StringVar()
         label_add_area = tkinter.Label(self.new_window_delete_member, text='Введите ID для удаления контакта: ')
@@ -342,6 +344,8 @@ class Telephone(tkinter.Frame):
         """Выполняется при нажатии кнопки "Добавить" """
         self.new_window = tkinter.Toplevel()
         self.new_window.geometry("600x250")
+        self.new_window.title('Окно для добавления нового контакта')
+        self.new_window.resizable(width=False, height=False)
 
         self.name = tkinter.StringVar()
         label_add_name = tkinter.Label(self.new_window, text='Введите ФИО: ')
@@ -412,7 +416,9 @@ class Telephone(tkinter.Frame):
     def create_new_window_update_member_1(self):
         """ "ИЗМЕНИТЬ № 1" Создает окно, выполняется при нажатии кнопки "ИЗМЕНИТЬ" """
         self.new_window_update_member_1 = tkinter.Toplevel()
-        self.new_window_update_member_1.geometry("270x120")
+        self.new_window_update_member_1.geometry("285x120")
+        self.new_window_update_member_1.title('Изменение контакта')
+        self.new_window_update_member_1.resizable(width=False, height=False)
         # в переменную self.id получаем данные их поля entry_add_area, опции textvariable
         self.update_id = tkinter.StringVar()
         label_add_area = tkinter.Label(self.new_window_update_member_1, text='Введите ID для изменения контакта: ')
@@ -453,6 +459,9 @@ class Telephone(tkinter.Frame):
 
         self.new_window_update_contact = tkinter.Toplevel()
         self.new_window_update_contact.geometry("600x230")
+        self.new_window_update_contact.title('Окно для изменения контакта')
+        self.new_window_update_contact.resizable(width=False, height=False)
+
 
         self.update_name = tkinter.StringVar()
         label_update_name = tkinter.Label(self.new_window_update_contact, text='Измените ФИО: ')
