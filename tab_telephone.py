@@ -143,20 +143,39 @@ class Telephone(tkinter.Frame):
             if self.update_name.get():
                 sql = f"UPDATE phone_book SET name = '{str(self.update_name.get()).lower()}' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
+            else:
+                # если удаляем символы из поля, то сохраняется пустая строка
+                sql = f"UPDATE phone_book SET name = '' WHERE id = {self.update_id.get()}"
+                cursor.execute(sql)
             if self.update_phone.get():
                 sql = f"UPDATE phone_book SET phone = '{str(self.update_phone.get()).lower()}' WHERE id = {self.update_id.get()}"
+                cursor.execute(sql)
+            else:
+                sql = f"UPDATE phone_book SET phone = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             if self.update_area.get():
                 sql = f"UPDATE phone_book SET area = '{str(self.update_area.get()).lower()}' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
+            else:
+                sql = f"UPDATE phone_book SET area = '' WHERE id = {self.update_id.get()}"
+                cursor.execute(sql)
             if self.update_workplace.get():
                 sql = f"UPDATE phone_book SET workplace = '{str(self.update_workplace.get()).lower()}' WHERE id = {self.update_id.get()}"
+                cursor.execute(sql)
+            else:
+                sql = f"UPDATE phone_book SET workplace = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             if self.update_position.get():
                 sql = f"UPDATE phone_book SET position = '{str(self.update_position.get()).lower()}' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
+            else:
+                sql = f"UPDATE phone_book SET position = '' WHERE id = {self.update_id.get()}"
+                cursor.execute(sql)
             if self.update_other.get():
                 sql = f"UPDATE phone_book SET other = '{str(self.update_other.get()).lower()}' WHERE id = {self.update_id.get()}"
+                cursor.execute(sql)
+            else:
+                sql = f"UPDATE phone_book SET other = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
         conn.commit()
         conn.close()
