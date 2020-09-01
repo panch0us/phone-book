@@ -141,38 +141,44 @@ class Telephone(tkinter.Frame):
         cursor = conn.cursor()
         if self.update_id.get():
             if self.update_name.get():
-                sql = f"UPDATE phone_book SET name = '{str(self.update_name.get()).lower()}' WHERE id = {self.update_id.get()}"
+                sql = f"UPDATE phone_book SET name = '{str(self.update_name.get()).lower()}' " \
+                      f"WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             else:
                 # если удаляем символы из поля, то сохраняется пустая строка
                 sql = f"UPDATE phone_book SET name = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             if self.update_phone.get():
-                sql = f"UPDATE phone_book SET phone = '{str(self.update_phone.get()).lower()}' WHERE id = {self.update_id.get()}"
+                sql = f"UPDATE phone_book SET phone = '{str(self.update_phone.get()).lower()}' " \
+                      f"WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             else:
                 sql = f"UPDATE phone_book SET phone = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             if self.update_area.get():
-                sql = f"UPDATE phone_book SET area = '{str(self.update_area.get()).lower()}' WHERE id = {self.update_id.get()}"
+                sql = f"UPDATE phone_book SET area = '{str(self.update_area.get()).lower()}' " \
+                      f"WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             else:
                 sql = f"UPDATE phone_book SET area = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             if self.update_workplace.get():
-                sql = f"UPDATE phone_book SET workplace = '{str(self.update_workplace.get()).lower()}' WHERE id = {self.update_id.get()}"
+                sql = f"UPDATE phone_book SET workplace = '{str(self.update_workplace.get()).lower()}' " \
+                      f"WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             else:
                 sql = f"UPDATE phone_book SET workplace = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             if self.update_position.get():
-                sql = f"UPDATE phone_book SET position = '{str(self.update_position.get()).lower()}' WHERE id = {self.update_id.get()}"
+                sql = f"UPDATE phone_book SET position = '{str(self.update_position.get()).lower()}' " \
+                      f"WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             else:
                 sql = f"UPDATE phone_book SET position = '' WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             if self.update_other.get():
-                sql = f"UPDATE phone_book SET other = '{str(self.update_other.get()).lower()}' WHERE id = {self.update_id.get()}"
+                sql = f"UPDATE phone_book SET other = '{str(self.update_other.get()).lower()}' " \
+                      f"WHERE id = {self.update_id.get()}"
                 cursor.execute(sql)
             else:
                 sql = f"UPDATE phone_book SET other = '' WHERE id = {self.update_id.get()}"
@@ -336,7 +342,8 @@ class Telephone(tkinter.Frame):
 
         ##### КНОПКИ #####
         # кнопка добавления ногого контакта
-        button_delete_member = tkinter.Button(self.new_window_delete_member, text='Удалить', command=self.delete_member_from_db)
+        button_delete_member = tkinter.Button(self.new_window_delete_member, text='Удалить',
+                                              command=self.delete_member_from_db)
         button_delete_member.place(x=110, y=80)
 
         self.new_window_delete_member.mainloop()
@@ -505,14 +512,16 @@ class Telephone(tkinter.Frame):
 
         self.update_workplace = tkinter.StringVar()
         label_update_workplace = tkinter.Label(self.new_window_update_contact, text='Измените место работы: ')
-        entry_update_workplace = tkinter.Entry(self.new_window_update_contact, width=55, textvariable=self.update_workplace)
+        entry_update_workplace = tkinter.Entry(self.new_window_update_contact, width=55,
+                                               textvariable=self.update_workplace)
         entry_update_workplace.insert(0, str(self.entry_workplace).title())
         label_update_workplace.place(x=5, y=100)
         entry_update_workplace.place(x=250, y=100)
 
         self.update_position = tkinter.StringVar()
         label_update_position = tkinter.Label(self.new_window_update_contact, text='Измените должность или описание: ')
-        entry_update_position = tkinter.Entry(self.new_window_update_contact, width=55, textvariable=self.update_position)
+        entry_update_position = tkinter.Entry(self.new_window_update_contact, width=55,
+                                              textvariable=self.update_position)
         entry_update_position.insert(0, str(self.entry_position).title())
         label_update_position.place(x=5, y=130)
         entry_update_position.place(x=250, y=130)
@@ -526,7 +535,8 @@ class Telephone(tkinter.Frame):
         entry_update_other.place(x=250, y=160)
 
         ##### КНОПКИ #####
-        button_add_member = tkinter.Button(self.new_window_update_contact, text='Изменить', command=self.update_from_database)
+        button_add_member = tkinter.Button(self.new_window_update_contact, text='Изменить',
+                                           command=self.update_from_database)
         button_add_member.place(x=250, y=200)
 
         self.new_window_update_contact.mainloop()
