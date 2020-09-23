@@ -9,6 +9,10 @@ from tkinter.font import Font
 import sqlite3
 import os.path
 
+# создаем глобальную переменную для запоминания выбранного поля поиска (имя или телефон или работа и т.п.)
+FUNCTION_VALUE = ''
+# создаем глобальную переменную для запоминания сожержания SQL запроса
+SQL_VALUE = ''
 
 class Telephone(tkinter.Frame):
     """Телефонный справочник"""
@@ -63,13 +67,14 @@ class Telephone(tkinter.Frame):
         conn.close()
         return result
 
-    def select_name_from_database(self):
+    def select_name_from_database(self, sql):
         """ Выбираем информацию из таблицы phone_book БД, путем фильтра по поиску"""
+        sql = sql
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         # применяем к полученному результаты функции self.search_contact.get() метод строки - .lower()
         # для перевода всей строки к нижнему регистру
-        sql = f"SELECT * FROM phone_book WHERE name LIKE '%{str(self.search_contact.get()).lower()}%'"
+        sql = f"SELECT * FROM phone_book WHERE name LIKE '%{sql}%'"
         cursor.execute(sql)
         result = cursor.fetchall()
         conn.close()
@@ -188,7 +193,12 @@ class Telephone(tkinter.Frame):
         self.text.destroy()
         self.scroll.destroy()
         # повторно вызываем функцию по созданию элементов text и scroll
-        self.init_ui(self.select_all_from_database())
+
+        global FUNCTION_VALUE
+        if FUNCTION_VALUE == 'name':
+            self.init_ui(self.select_name_from_database(SQL_VALUE))
+        else:
+            self.init_ui(self.select_all_from_database())
         # уничтожаем второстепенное окно
         self.new_window_update_contact.destroy()
 
@@ -542,9 +552,13 @@ class Telephone(tkinter.Frame):
         self.new_window_update_contact.mainloop()
 
     def search_def_name_restart(self):
+        global FUNCTION_VALUE
+        global SQL_VALUE
+        FUNCTION_VALUE = 'name'
+        SQL_VALUE = str(self.search_contact.get().lower())
         self.text.destroy()
         self.scroll.destroy()
-        self.init_ui(self.select_name_from_database())
+        self.init_ui(self.select_name_from_database(SQL_VALUE))
 
     def search_def_phone_restart(self):
         self.text.destroy()
