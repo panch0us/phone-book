@@ -193,13 +193,8 @@ class Telephone(tkinter.Frame):
         self.scroll.destroy()
         # повторно вызываем функцию по созданию элементов text и scroll
 
-        global FUNCTION_VALUE
+        self.current_status_search()
 
-        if FUNCTION_VALUE == 'name':
-            self.init_ui(self.select_name_from_database(SQL_VALUE))
-        else:
-            self.init_ui(self.select_all_from_database())
-        # уничтожаем второстепенное окно
         self.new_window_update_contact.destroy()
 
     def init_ui(self, func):
@@ -333,9 +328,9 @@ class Telephone(tkinter.Frame):
         self.label_menu_contact.place(x=170, y=200)
 
         # ЛЕЙБЛ АВТОРА
-        self.label_author = tkinter.Label(self.frame_bot, text='© Савкин П.В. 2020')
+        self.label_author = tkinter.Label(self.frame_bot, text='© Савкин П.В. 2020, ver. 1.1')
         # entry - (анг. вход) - поле для ввода данных пользователем
-        self.label_author.place(x=1050, y=3)
+        self.label_author.place(x=1000, y=3)
 
     def create_new_window_delete_member(self):
         """Открывается новое окно для удаления контакта"""
@@ -362,7 +357,6 @@ class Telephone(tkinter.Frame):
         """ Удаляем контакт из БД """
         # присваиваем id значение, введенное из переменной self.id функции create_new_window_delete_member
         id = self.id.get()
-        print(id)
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         cursor.execute("""DELETE FROM phone_book WHERE id = ?""", (id,))
@@ -371,8 +365,9 @@ class Telephone(tkinter.Frame):
         # уничтожаем в главном окне элемент text и элемент scroll
         self.text.destroy()
         self.scroll.destroy()
-        # повторно вызываем функцию по созданию элементов text и scroll
-        self.init_ui(self.select_all_from_database())
+
+        # ДОБАВИТЬ ОПИСАНИЕ
+        self.current_status_search()
         # уничтожаем второстепенное окно
         self.new_window_delete_member.destroy()
 
@@ -446,7 +441,10 @@ class Telephone(tkinter.Frame):
 
         self.text.destroy()
         self.scroll.destroy()
-        self.init_ui(self.select_all_from_database())
+
+        # Добавить описание
+        self.current_status_search()
+
         self.new_window.destroy()
 
     def create_new_window_update_member_1(self):
