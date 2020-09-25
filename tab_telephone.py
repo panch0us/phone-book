@@ -23,13 +23,13 @@ class Telephone(tkinter.Frame):
         self.myFont = Font(family="Courier", size=10)
 
         self.frame_left = tkinter.LabelFrame()
-        self.frame_left.place(in_=self, x=5, y=5, height=600, width=650)
+        self.frame_left.place(in_=self, x=5, y=5, height=614, width=650)
 
         self.frame_right = tkinter.LabelFrame()
-        self.frame_right.place(in_=self, x=660, y=5, height=600, width=520)
+        self.frame_right.place(in_=self, x=660, y=5, height=614, width=520)
 
         self.frame_bot = tkinter.LabelFrame()
-        self.frame_bot.place(in_=self, x=5, y=605, height=33, width=1175)
+        self.frame_bot.place(in_=self, x=5, y=623, height=30, width=1175)
 
         self.exist_database()
         self.init_ui(self.select_all_from_database())
@@ -199,7 +199,7 @@ class Telephone(tkinter.Frame):
 
     def init_ui(self, func):
         """Создание телефонной книги"""
-        self.text = tkinter.Text(self.frame_left, width=77, height=36)
+        self.text = tkinter.Text(self.frame_left, width=77, height=37)
         for i in func:
             self.text.insert(tkinter.INSERT, f'ID:\t|{i[0]}\n'
                                              f'ФИО:\t|{str(i[1]).title()}\n'

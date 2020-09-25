@@ -10,16 +10,16 @@ class Appg(tkinter.Frame):
         self.parent = parent
         # Создаем 3 фрейма (левый, центральный и правый)
         self.frame_left = tkinter.LabelFrame(text='АППГ')
-        self.frame_left.place(in_=self, x=5, y=5, height=600, width=390)
+        self.frame_left.place(in_=self, x=5, y=5, height=614, width=390)
 
         self.frame_center = tkinter.LabelFrame(text='Проценты')
-        self.frame_center.place(in_=self, x=396, y=5, height=600, width=390)
+        self.frame_center.place(in_=self, x=396, y=5, height=614, width=390)
 
         self.frame_right = tkinter.LabelFrame(text='Раскрываемость')
-        self.frame_right.place(in_=self, x=787, y=5, height=600, width=393)
+        self.frame_right.place(in_=self, x=787, y=5, height=614, width=393)
 
         self.frame_bot = tkinter.LabelFrame()
-        self.frame_bot.place(in_=self, x=5, y=605, height=33, width=1175)
+        self.frame_bot.place(in_=self, x=5, y=623, height=30, width=1175)
 
         # Инициируем запуск 3 функций для различных вычислений
         self.appg()
