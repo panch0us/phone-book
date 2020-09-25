@@ -67,74 +67,73 @@ class Telephone(tkinter.Frame):
         conn.close()
         return result
 
-    def select_name_from_database(self, sql):
+    def select_name_from_database(self, sql_value):
         """ Выбираем информацию из таблицы phone_book БД, путем фильтра по поиску"""
-        sql = sql
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         # применяем к полученному результаты функции self.search_contact.get() метод строки - .lower()
         # для перевода всей строки к нижнему регистру
-        sql = f"SELECT * FROM phone_book WHERE name LIKE '%{sql}%'"
+        sql = f"SELECT * FROM phone_book WHERE name LIKE '%{sql_value}%'"
         cursor.execute(sql)
         result = cursor.fetchall()
         conn.close()
         return result
 
-    def select_phone_from_database(self):
+    def select_phone_from_database(self, sql_value):
         """ Выбираем информацию из таблицы phone_book БД, путем фильтра по поиску номера телефона"""
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         # применяем к полученному результаты функции self.search_contact.get() метод строки - .lower()
         # для перевода всей строки к нижнему регистру
-        sql = f"SELECT * FROM phone_book WHERE phone LIKE '%{str(self.search_phone.get()).lower()}%'"
+        sql = f"SELECT * FROM phone_book WHERE phone LIKE '%{sql_value}%'"
         cursor.execute(sql)
         result = cursor.fetchall()
         conn.close()
         return result
 
-    def select_area_from_database(self):
+    def select_area_from_database(self, sql_value):
         """ Выбираем информацию из таблицы phone_book БД, путем фильтра по поиску"""
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         # применяем к полученному результаты функции self.search_contact.get() метод строки - .lower()
         # для перевода всей строки к нижнему регистру
-        sql = f"SELECT * FROM phone_book WHERE area LIKE '%{str(self.search_area.get()).lower()}%'"
+        sql = f"SELECT * FROM phone_book WHERE area LIKE '%{sql_value}%'"
         cursor.execute(sql)
         result = cursor.fetchall()
         conn.close()
         return result
 
-    def select_workplace_from_database(self):
+    def select_workplace_from_database(self, sql_value):
         """ Выбираем информацию из таблицы phone_book БД, путем фильтра по поиску места работы"""
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         # применяем к полученному результаты функции self.search_contact.get() метод строки - .lower()
         # для перевода всей строки к нижнему регистру
-        sql = f"SELECT * FROM phone_book WHERE workplace LIKE '%{str(self.search_workplace.get()).lower()}%'"
+        sql = f"SELECT * FROM phone_book WHERE workplace LIKE '%{sql_value}%'"
         cursor.execute(sql)
         result = cursor.fetchall()
         conn.close()
         return result
 
-    def select_position_from_database(self):
+    def select_position_from_database(self, sql_value):
         """ Выбираем информацию из таблицы phone_book БД, путем фильтра по поиску должности"""
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         # применяем к полученному результаты функции self.search_contact.get() метод строки - .lower()
         # для перевода всей строки к нижнему регистру
-        sql = f"SELECT * FROM phone_book WHERE position LIKE '%{str(self.search_position.get()).lower()}%'"
+        sql = f"SELECT * FROM phone_book WHERE position LIKE '%{sql_value}%'"
         cursor.execute(sql)
         result = cursor.fetchall()
         conn.close()
         return result
 
-    def select_other_from_database(self):
+    def select_other_from_database(self, sql_value):
         """ Выбираем информацию из таблицы phone_book БД, путем фильтра по поиску позиции иное"""
         conn = sqlite3.connect("mydatabase.db")
         cursor = conn.cursor()
         # применяем к полученному результаты функции self.search_contact.get() метод строки - .lower()
         # для перевода всей строки к нижнему регистру
-        sql = f"SELECT * FROM phone_book WHERE other LIKE '%{str(self.search_other.get()).lower()}%'"
+        sql = f"SELECT * FROM phone_book WHERE other LIKE '%{sql_value}%'"
         cursor.execute(sql)
         result = cursor.fetchall()
         conn.close()
@@ -195,6 +194,7 @@ class Telephone(tkinter.Frame):
         # повторно вызываем функцию по созданию элементов text и scroll
 
         global FUNCTION_VALUE
+
         if FUNCTION_VALUE == 'name':
             self.init_ui(self.select_name_from_database(SQL_VALUE))
         else:
@@ -561,29 +561,49 @@ class Telephone(tkinter.Frame):
         self.init_ui(self.select_name_from_database(SQL_VALUE))
 
     def search_def_phone_restart(self):
+        global FUNCTION_VALUE
+        global SQL_VALUE
+        FUNCTION_VALUE = 'phone'
+        SQL_VALUE = str(self.search_phone.get().lower())
         self.text.destroy()
         self.scroll.destroy()
-        self.init_ui(self.select_phone_from_database())
+        self.init_ui(self.select_phone_from_database(SQL_VALUE))
 
     def search_def_area_restart(self):
+        global FUNCTION_VALUE
+        global SQL_VALUE
+        FUNCTION_VALUE = 'area'
+        SQL_VALUE = str(self.search_area.get().lower())
         self.text.destroy()
         self.scroll.destroy()
-        self.init_ui(self.select_area_from_database())
+        self.init_ui(self.select_area_from_database(SQL_VALUE))
 
     def search_def_workplace_restart(self):
+        global FUNCTION_VALUE
+        global SQL_VALUE
+        FUNCTION_VALUE = 'workplace'
+        SQL_VALUE = str(self.search_workplace.get().lower())
         self.text.destroy()
         self.scroll.destroy()
-        self.init_ui(self.select_workplace_from_database())
+        self.init_ui(self.select_workplace_from_database(SQL_VALUE))
 
     def search_def_position_restart(self):
+        global FUNCTION_VALUE
+        global SQL_VALUE
+        FUNCTION_VALUE = 'position'
+        SQL_VALUE = str(self.search_position.get().lower())
         self.text.destroy()
         self.scroll.destroy()
-        self.init_ui(self.select_position_from_database())
+        self.init_ui(self.select_position_from_database(SQL_VALUE))
 
     def search_def_other_restart(self):
+        global FUNCTION_VALUE
+        global SQL_VALUE
+        FUNCTION_VALUE = 'other'
+        SQL_VALUE = str(self.search_other.get().lower())
         self.text.destroy()
         self.scroll.destroy()
-        self.init_ui(self.select_other_from_database())
+        self.init_ui(self.select_other_from_database(SQL_VALUE))
 
     def default_result(self):
         """Передает в функцию unit_ui функцию select_all_from_database
@@ -591,3 +611,20 @@ class Telephone(tkinter.Frame):
         self.text.destroy()
         self.scroll.destroy()
         self.init_ui(self.select_all_from_database())
+
+    def current_status_search(self):
+        """???"""
+        if FUNCTION_VALUE == 'name':
+            self.init_ui(self.select_name_from_database(SQL_VALUE))
+        elif FUNCTION_VALUE == 'phone':
+            self.init_ui(self.select_phone_from_database(SQL_VALUE))
+        elif FUNCTION_VALUE == 'area':
+            self.init_ui(self.select_area_from_database(SQL_VALUE))
+        elif FUNCTION_VALUE == 'workplace':
+            self.init_ui(self.select_workplace_from_database(SQL_VALUE))
+        elif FUNCTION_VALUE == 'position':
+            self.init_ui(self.select_position_from_database(SQL_VALUE))
+        elif FUNCTION_VALUE == 'other':
+            self.init_ui(self.select_other_from_database(SQL_VALUE))
+        else:
+            self.init_ui(self.select_all_from_database())
