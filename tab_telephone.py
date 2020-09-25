@@ -1,8 +1,3 @@
-# ТЕЛЕФОННЫЙ СПРАВОЧНИК
-"""
-Описание
-"""
-
 import tkinter
 from tkinter import ttk
 from tkinter.font import Font
