@@ -366,7 +366,9 @@ class Telephone(tkinter.Frame):
         self.text.destroy()
         self.scroll.destroy()
 
-        # ДОБАВИТЬ ОПИСАНИЕ
+        # Вызываем функцию, которая проверяет в каком окне поиска находится пользователь в настоящий момент.
+        # В результате при добавлении, удалении или изменении контакта, пользователь остается в томже окне,
+        # но только с обновленными данными.
         self.current_status_search()
         # уничтожаем второстепенное окно
         self.new_window_delete_member.destroy()
@@ -611,7 +613,14 @@ class Telephone(tkinter.Frame):
         self.init_ui(self.select_all_from_database())
 
     def current_status_search(self):
-        """???"""
+        """Функция проверяет в каком окне поиска находится пользователь в настоящий момент.
+        В результате при добавлении, удалении или изменении контакта, пользователь остается в томже окне,
+        но только с обновленными данными.
+        FUNCTION_VALUE - Глобальная переменная используется для проверки позиции: в каком окне поиска находится
+        пользователь и на основе выбора отправляет нужный sql запрос через необходимую функцию.
+        SQL_VALUE - sql-код получаем из глобальной переменной SQL_VALUE"""
+        global FUNCTION_VALUE
+
         if FUNCTION_VALUE == 'name':
             self.init_ui(self.select_name_from_database(SQL_VALUE))
         elif FUNCTION_VALUE == 'phone':
