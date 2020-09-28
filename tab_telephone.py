@@ -603,6 +603,10 @@ class Telephone(tkinter.Frame):
     def default_result(self):
         """Передает в функцию unit_ui функцию select_all_from_database
         для вывода всех элементов из таблицы phone_book на элемент tkinter.Text"""
+
+        # устанавливаем глобальные переменные по умолчанию ( GLOBAL = '').
+        self.restart_global_variables()
+
         self.text.destroy()
         self.scroll.destroy()
         self.init_ui(self.select_all_from_database())
@@ -630,3 +634,10 @@ class Telephone(tkinter.Frame):
             self.init_ui(self.select_other_from_database(SQL_VALUE))
         else:
             self.init_ui(self.select_all_from_database())
+
+    def restart_global_variables(self):
+        """Устанавливаем значение глобальных переменных в стандартное значение"""
+        global FUNCTION_VALUE
+        global SQL_VALUE
+        FUNCTION_VALUE = ''
+        SQL_VALUE = ''
